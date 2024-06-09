@@ -1,0 +1,63 @@
+env:
+  TERM: xterm-256color
+window:
+  padding:
+    x: 5
+    y: 5
+colors:
+  draw_bold_text_with_bright_colors: true
+  bright:
+    black: "#198388"
+    blue: "#277fff"
+    cyan: "#05a1f7"
+    green: "#47d4b9"
+    magenta: "#962ac3"
+    red: "#ec0101"
+    white: "#ffffff"
+    yellow: "#ff8a18"
+  normal:
+    black: "#1f2229"
+    blue: "#367bf0"
+    cyan: "#49aee6"
+    green: "#5ebdab"
+    magenta: "#9755b3"
+    red: "#d41919"
+    white: "#e6e6e6"
+    yellow: "#fea44c"
+  primary:
+    background: "#23252e"
+    foreground: "#ffffff"
+cursor:
+  thickness: 0.15
+  unfocused_hollow: true
+  vi_mode_style: Block
+  style:
+    blinking: Off
+    shape: Beam
+font:
+  size: 10
+  bold:
+    family: terminal-font
+    style: Bold
+  bold_italic:
+    family: terminal-font
+    style: Bold Italic
+  italic:
+    family: terminal-font
+    style: Italic
+  normal:
+    family: terminal-font
+    style: Regular
+hints:
+  enabled:
+    - command: xdg-open
+      hyperlinks: true
+      post_processing: true
+      regex:
+        "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-\u009F<>\" {-}\\^⟨⟩`]+"
+      binding:
+        key: U
+        mods: Control|Shift
+      mouse:
+        enabled: true
+        mods: Control

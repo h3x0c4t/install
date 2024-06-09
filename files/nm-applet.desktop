@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=nm-applet
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Network Manager Applet
+Comment=Manage your network connections
