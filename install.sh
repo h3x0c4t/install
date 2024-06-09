@@ -14,14 +14,14 @@ fi
 
 # Update the package list
 echo "[*] Updating the package list"
-sudo apt update
+apt update
 
 # Install the required packages
 echo "[*] Installing the required packages"
-sudo apt install -y git network-manager dkms build-essential linux-headers-$(uname -r) fontconfig \ 
-                    xorg fonts-noto fonts-jetbrains-mono fonts-recommended libx11-dev libxft-dev \
-                    libxinerama-dev libx11-xcb-dev libxcb-res0-dev dmenu alacritty zsh dex \
-                    zsh-autosuggestions zsh-syntax-highlighting papirus-icon-theme wget curl
+apt install -y git network-manager dkms build-essential linux-headers-$(uname -r) fontconfig \
+    fonts-jetbrains-mono fonts-noto fonts-recommended xorg libx11-dev libxft-dev \
+    libxinerama-dev libx11-xcb-dev libxcb-res0-dev dmenu alacritty zsh dex \
+    zsh-autosuggestions zsh-syntax-highlighting papirus-icon-theme wget curl
 
 # Font configuration
 echo "[*] Configuring the fonts"
@@ -29,12 +29,12 @@ if [ ! -d ~/.config/fontconfig ]; then
     mkdir -p ~/.config/fontconfig
 fi
 wget -O ~/.config/fontconfig/fonts.conf https://raw.githubusercontent.com/h3x0c4t/install/master/files/fonts.conf
-fv-cache -f
+fc-cache -f
 
 # Install dwm
 echo "[*] Installing dwm"
-sudo git clone https://github.com/h3x0c4t/dwm-patched /usr/local/src/dwm
-(cd /usr/local/src/dwm && sudo make clean install)
+git clone https://github.com/h3x0c4t/dwm-patched /usr/local/src/dwm
+(cd /usr/local/src/dwm && make clean install)
 
 # Create the .xinitrc file
 echo "[*] Creating the .xinitrc file"
@@ -51,14 +51,14 @@ wget -O ~/.config/alacritty/alacritty.yml https://raw.githubusercontent.com/h3x0
 # Configure zsh
 echo "[*] Configuring zsh"
 wget -O ~/.zshrc https://raw.githubusercontent.com/h3x0c4t/install/master/files/.zshrc
-sudo usermod --shell /bin/zsh $USER
+usermod --shell /bin/zsh $USER
 
 # Configure GTK
 echo "[*] Configuring GTK"
 if [ ! -d ~/.local/share/themes ]; then
     mkdir -p ~/.local/share/themes
 fi
-git clone -b darker-standard-buttons https://github.com/EliverLara/Nordic .local/share/themes/Nordic-darker-standard-buttons
+git clone -b darker-standard-buttons https://github.com/EliverLara/Nordic ~/.local/share/themes/Nordic-darker-standard-buttons
 
 if [ ! -d ~/.config/gtk-3.0 ]; then
     mkdir -p ~/.config/gtk-3.0
@@ -67,7 +67,7 @@ wget -O ~/.config/gtk-3.0/settings.ini https://raw.githubusercontent.com/h3x0c4t
 
 # Install nm-applet
 echo "[*] Installing nm-applet"
-sudo apt install -y network-manager-gnome
+apt install -y network-manager-gnome
 if [ ! -d ~/.config/autostart ]; then
     mkdir -p ~/.config/autostart
 fi
@@ -77,21 +77,20 @@ wget -O ~/.config/autostart/nm-applet.desktop https://raw.githubusercontent.com/
 echo "[*] Please insert the guest additions CD"
 read -p "[*] Press enter to continue"
 
-sudo mkdir -p /mnt/cdrom
-sudo mount /dev/cdrom /mnt/cdrom
-sudo /mnt/cdrom/VBoxLinuxAdditions.run --nox11
-sudo umount /mnt/cdrom
-sudo rmdir /mnt/cdrom
-sudo usermod -aG vboxsf $USER
+mkdir -p /mnt/cdrom
+mount /dev/cdrom /mnt/cdrom
+/mnt/cdrom/VBoxLinuxAdditions.run --nox11
+umount /mnt/cdrom
+rmdir /mnt/cdrom
+usermod -aG vboxsf $USER
 
 # Set up the network manager
 echo "[*] Setting up the network manager"
-sudo systemctl stop networking
-sudo systemctl disable networking
-sudo wget -O /etc/network/interfaces https://raw.githubusercontent.com/h3x0c4t/install/master/files/interfaces
-sudo systemctl enable NetworkManager
-sudo systemctl start NetworkManager
+systemctl stop networking
+systemctl disable networking
+wget -O /etc/network/interfaces https://raw.githubusercontent.com/h3x0c4t/install/master/files/interfaces
+systemctl enable NetworkManager
+systemctl start NetworkManager
 
 # Done
 echo "[*] Installation complete! Please reboot the system."
-
