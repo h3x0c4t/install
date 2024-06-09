@@ -79,9 +79,9 @@ usermod -aG vboxsf $USER
 
 # Set up the network manager
 echo "[*] Setting up the network manager"
+wget -O /etc/network/interfaces https://raw.githubusercontent.com/h3x0c4t/install/master/files/interfaces
 systemctl stop networking
 systemctl disable networking
-wget -O /etc/network/interfaces https://raw.githubusercontent.com/h3x0c4t/install/master/files/interfaces
 systemctl enable NetworkManager
 systemctl start NetworkManager
 
