@@ -15,6 +15,7 @@ fi
 # Update the package list
 echo "[*] Updating the package list"
 sudo apt update
+read -p "[*] Press enter to continue"
 
 # Install the required packages
 echo "[*] Installing the required packages"
@@ -22,6 +23,7 @@ sudo apt install -y git network-manager dkms build-essential linux-headers-$(una
                     fonts-jetbrains-mono fonts-noto fonts-recommended xorg libx11-dev libxft-dev \
                     libxinerama-dev libx11-xcb-dev libxcb-res0-dev dmenu alacritty zsh dex \
                     zsh-autosuggestions zsh-syntax-highlighting papirus-icon-theme wget curl
+read -p "[*] Press enter to continue"
 
 # Set up the network manager
 echo "[*] Setting up the network manager"
