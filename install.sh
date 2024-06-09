@@ -12,6 +12,8 @@ if [ ! -f /etc/debian_version ]; then
     exit 1
 fi
 
+read -p "[*] Press enter to continue" tmp_var
+
 # Update the package list
 echo "[*] Updating the package list"
 apt update
@@ -75,7 +77,7 @@ wget -O ~/.config/autostart/nm-applet.desktop https://raw.githubusercontent.com/
 
 # Install guest additions
 echo "[*] Please insert the guest additions CD"
-read -p "[*] Press enter to continue"
+read -p "[*] Press enter to continue" tmp_var
 
 mkdir -p /mnt/cdrom
 mount /dev/cdrom /mnt/cdrom
