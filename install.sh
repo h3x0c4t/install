@@ -15,6 +15,7 @@ fi
 # Update the package list
 echo "[*] Updating the package list"
 sudo apt update
+sleep 2
 read -p "[*] Press enter to continue"
 
 # Install the required packages
@@ -24,14 +25,6 @@ sudo apt install -y git network-manager dkms build-essential linux-headers-$(una
                     libxinerama-dev libx11-xcb-dev libxcb-res0-dev dmenu alacritty zsh dex \
                     zsh-autosuggestions zsh-syntax-highlighting papirus-icon-theme wget curl
 read -p "[*] Press enter to continue"
-
-# Set up the network manager
-echo "[*] Setting up the network manager"
-sudo systemctl stop networking
-sudo systemctl disable networking
-sudo wget -O /etc/network/interfaces https://raw.githubusercontent.com/h3x0c4t/install/master/files/interfaces
-sudo systemctl enable NetworkManager
-sudo systemctl start NetworkManager
 
 # Font configuration
 echo "[*] Configuring the fonts"
@@ -94,5 +87,14 @@ sudo umount /mnt/cdrom
 sudo rmdir /mnt/cdrom
 sudo usermod -aG vboxsf $USER
 
+# Set up the network manager
+echo "[*] Setting up the network manager"
+sudo systemctl stop networking
+sudo systemctl disable networking
+sudo wget -O /etc/network/interfaces https://raw.githubusercontent.com/h3x0c4t/install/master/files/interfaces
+sudo systemctl enable NetworkManager
+sudo systemctl start NetworkManager
+
 # Done
 echo "[*] Installation complete! Please reboot the system."
+
